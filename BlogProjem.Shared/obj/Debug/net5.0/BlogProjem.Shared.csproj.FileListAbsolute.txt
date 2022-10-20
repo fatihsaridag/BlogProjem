@@ -1,0 +1,12 @@
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Shared\bin\Debug\net5.0\BlogProjem.Shared.deps.json
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Shared\bin\Debug\net5.0\BlogProjem.Shared.dll
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Shared\bin\Debug\net5.0\ref\BlogProjem.Shared.dll
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Shared\bin\Debug\net5.0\BlogProjem.Shared.pdb
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Shared\obj\Debug\net5.0\BlogProjem.Shared.csproj.AssemblyReference.cache
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Shared\obj\Debug\net5.0\BlogProjem.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Shared\obj\Debug\net5.0\BlogProjem.Shared.AssemblyInfoInputs.cache
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Shared\obj\Debug\net5.0\BlogProjem.Shared.AssemblyInfo.cs
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Shared\obj\Debug\net5.0\BlogProjem.Shared.csproj.CoreCompileInputs.cache
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Shared\obj\Debug\net5.0\BlogProjem.Shared.dll
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Shared\obj\Debug\net5.0\ref\BlogProjem.Shared.dll
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Shared\obj\Debug\net5.0\BlogProjem.Shared.pdb

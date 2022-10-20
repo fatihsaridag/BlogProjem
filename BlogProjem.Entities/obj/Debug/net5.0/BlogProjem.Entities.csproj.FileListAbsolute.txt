@@ -1,0 +1,15 @@
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Entities\bin\Debug\net5.0\BlogProjem.Entities.deps.json
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Entities\bin\Debug\net5.0\BlogProjem.Entities.dll
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Entities\bin\Debug\net5.0\ref\BlogProjem.Entities.dll
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Entities\bin\Debug\net5.0\BlogProjem.Entities.pdb
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Entities\bin\Debug\net5.0\BlogProjem.Shared.dll
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Entities\bin\Debug\net5.0\BlogProjem.Shared.pdb
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Entities\obj\Debug\net5.0\BlogProjem.Entities.csproj.AssemblyReference.cache
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Entities\obj\Debug\net5.0\BlogProjem.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Entities\obj\Debug\net5.0\BlogProjem.Entities.AssemblyInfoInputs.cache
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Entities\obj\Debug\net5.0\BlogProjem.Entities.AssemblyInfo.cs
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Entities\obj\Debug\net5.0\BlogProjem.Entities.csproj.CoreCompileInputs.cache
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Entities\obj\Debug\net5.0\BlogProjem.Entities.csproj.CopyComplete
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Entities\obj\Debug\net5.0\BlogProjem.Entities.dll
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Entities\obj\Debug\net5.0\ref\BlogProjem.Entities.dll
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Entities\obj\Debug\net5.0\BlogProjem.Entities.pdb
