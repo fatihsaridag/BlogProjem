@@ -232,14 +232,14 @@ namespace BlogProjem.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "4e75c498-e5e4-4e52-a2c4-be11c96f01d8",
+                            ConcurrencyStamp = "1b1eda12-8fd5-475b-bdda-771e6cb69946",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "52912ac3-2fb1-4803-90e3-d4ea449880aa",
+                            ConcurrencyStamp = "52ddd7f3-89c0-4eca-8e09-e07bec95724a",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         });
@@ -344,17 +344,17 @@ namespace BlogProjem.Data.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6c715cf6-87e1-4470-b822-9ad5eb7ec62f",
+                            ConcurrencyStamp = "96e3b3f5-c36b-4d31-b8eb-0b90345bbf10",
                             Email = "adminuser@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINUSER@GMAIL.COM",
                             NormalizedUserName = "ADMINUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJAVM2HUx8x/OIUfuOFGF9MZr11n1YCp1yJsQ68RLPb31nMrQ2/o+W2pcS3Vr+Pszw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDqIaRpNCESCIARddbqQsVCnKC4RxWMHYfafnei3d2FoWHWR+zy8kLvNkI3ccvrUlA==",
                             PhoneNumber = "+905555555555",
                             PhoneNumberConfirmed = true,
                             Picture = "defaultUser.png",
-                            SecurityStamp = "a0ea69f1-d78f-4e08-8991-1467b72c0a0d",
+                            SecurityStamp = "910aab15-873a-4d69-b8af-a41643c44c4a",
                             TwoFactorEnabled = false,
                             UserName = "adminuser"
                         },
@@ -362,17 +362,17 @@ namespace BlogProjem.Data.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "28592c21-e9a3-4773-b67d-554e92e8736e",
+                            ConcurrencyStamp = "75e86ba3-3305-43bf-93a2-428bf9882fb0",
                             Email = "editoruser@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "EDITORUSER@GMAIL.COM",
                             NormalizedUserName = "EDITORUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEI2XZIUFUB93jKq0VnCmYGawwDfODdsO2uojd+tDMtM311jStulsaF4jQMIiRjexPg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGvw3U3JGYpiXLFLxVbBnpLrXFMp4Kg88eEbwC7agYRC6Wwzwhw0bhH0HKde2IDlCw==",
                             PhoneNumber = "+905555555555",
                             PhoneNumberConfirmed = true,
                             Picture = "defaultUser.png",
-                            SecurityStamp = "3daaf2d9-d299-48cc-a39e-3368def1d9af",
+                            SecurityStamp = "996a9ecb-58b0-4f00-a854-c98f6745b317",
                             TwoFactorEnabled = false,
                             UserName = "editoruser"
                         });
