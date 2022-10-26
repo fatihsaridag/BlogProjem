@@ -1,6 +1,8 @@
 using AutoMapper;
 using BlogProjem.Data.Concrete.EntityFramework.Contexts;
 using BlogProjem.Mvc.Areas.Admin.AutoMapper.Profiles;
+using BlogProjem.Mvc.Helpers.Abstract;
+using BlogProjem.Mvc.Helpers.Concrete;
 using BlogProjem.Services.AutoMapper.Profiles;
 using BlogProjem.Services.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -33,6 +35,7 @@ namespace BlogProjem.Mvc
             services.AddSession();
             services.AddAutoMapper(typeof(CategoryProfile), typeof(ArticleProfile),typeof(UserProfile));    //Automapperi kayýt ediyoruz.
             services.LoadMyServices();
+            services.AddScoped<IImageHelper, ImageHelper>();
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = new PathString("/Admin/User/Login");  //Ben kullanýcý giriþi yapmadan admin areaya eriþmek istersek sistem otomatik olarak bu sayfaya yönlendiriyor olacak.

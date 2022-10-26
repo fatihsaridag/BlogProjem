@@ -250,8 +250,8 @@ namespace BlogProjem.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "4e75c498-e5e4-4e52-a2c4-be11c96f01d8", "Admin", "ADMIN" },
-                    { 2, "52912ac3-2fb1-4803-90e3-d4ea449880aa", "Editor", "EDITOR" }
+                    { 1, "1b1eda12-8fd5-475b-bdda-771e6cb69946", "Admin", "ADMIN" },
+                    { 2, "52ddd7f3-89c0-4eca-8e09-e07bec95724a", "Editor", "EDITOR" }
                 });
 
             migrationBuilder.InsertData(
@@ -259,8 +259,8 @@ namespace BlogProjem.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Picture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "6c715cf6-87e1-4470-b822-9ad5eb7ec62f", "adminuser@gmail.com", true, false, null, "ADMINUSER@GMAIL.COM", "ADMINUSER", "AQAAAAEAACcQAAAAEJAVM2HUx8x/OIUfuOFGF9MZr11n1YCp1yJsQ68RLPb31nMrQ2/o+W2pcS3Vr+Pszw==", "+905555555555", true, "defaultUser.png", "a0ea69f1-d78f-4e08-8991-1467b72c0a0d", false, "adminuser" },
-                    { 2, 0, "28592c21-e9a3-4773-b67d-554e92e8736e", "editoruser@gmail.com", true, false, null, "EDITORUSER@GMAIL.COM", "EDITORUSER", "AQAAAAEAACcQAAAAEI2XZIUFUB93jKq0VnCmYGawwDfODdsO2uojd+tDMtM311jStulsaF4jQMIiRjexPg==", "+905555555555", true, "defaultUser.png", "3daaf2d9-d299-48cc-a39e-3368def1d9af", false, "editoruser" }
+                    { 1, 0, "96e3b3f5-c36b-4d31-b8eb-0b90345bbf10", "adminuser@gmail.com", true, false, null, "ADMINUSER@GMAIL.COM", "ADMINUSER", "AQAAAAEAACcQAAAAEDqIaRpNCESCIARddbqQsVCnKC4RxWMHYfafnei3d2FoWHWR+zy8kLvNkI3ccvrUlA==", "+905555555555", true, "defaultUser.png", "910aab15-873a-4d69-b8af-a41643c44c4a", false, "adminuser" },
+                    { 2, 0, "75e86ba3-3305-43bf-93a2-428bf9882fb0", "editoruser@gmail.com", true, false, null, "EDITORUSER@GMAIL.COM", "EDITORUSER", "AQAAAAEAACcQAAAAEGvw3U3JGYpiXLFLxVbBnpLrXFMp4Kg88eEbwC7agYRC6Wwzwhw0bhH0HKde2IDlCw==", "+905555555555", true, "defaultUser.png", "996a9ecb-58b0-4f00-a854-c98f6745b317", false, "editoruser" }
                 });
 
             migrationBuilder.InsertData(

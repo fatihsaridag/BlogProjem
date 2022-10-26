@@ -2,6 +2,7 @@
 using BlogProjem.Entities.Concrete;
 using BlogProjem.Entities.Dtos;
 using BlogProjem.Mvc.Areas.Admin.Models;
+using BlogProjem.Mvc.Helpers.Abstract;
 using BlogProjem.Shared.Utilities.Extensions;
 using BlogProjem.Shared.Utilities.Results.ComplexTypes;
 using Microsoft.AspNetCore.Authorization;
@@ -25,15 +26,15 @@ namespace BlogProjem.Mvc.Areas.Admin.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _singInManager;
-        private readonly IWebHostEnvironment _env;
         private readonly IMapper _mapper;
+        private readonly IImageHelper _imageHelper;
 
-        public UserController(UserManager<User> userManager, IWebHostEnvironment env, IMapper mapper, SignInManager<User> singInManager)
+        public UserController(UserManager<User> userManager, IWebHostEnvironment env, IMapper mapper, SignInManager<User> singInManager, IImageHelper imageHelper)
         {
             _userManager = userManager;
-            _env = env;
             _mapper = mapper;
             _singInManager = singInManager;
+            _imageHelper = imageHelper;
         }
 
         [Authorize(Roles="Admin")]
@@ -129,7 +130,8 @@ namespace BlogProjem.Mvc.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                userAddDto.Picture = await ImageUpload(userAddDto.UserName,userAddDto.PictureFile);                     //Bizlrin UserAddDto daki picture alanına Resim adı eklemesi gerekiyor. Bu resim adını eklersek kullanıcının resmini görüyor olacağız
+                var uploadedImageDtoResult = await _imageHelper.UploadUserImage(userAddDto.UserName,userAddDto.PictureFile);     //Bizlrin UserAddDto daki picture alanına Resim adı eklemesi gerekiyor. Bu resim adını eklersek kullanıcının resmini görüyor olacağız
+                userAddDto.Picture = uploadedImageDtoResult.ResultStatus == ResultStatus.Success ? uploadedImageDtoResult.Data.FullName : "userImages/defaultUser.png";
                 var user = _mapper.Map<User>(userAddDto);                                   //UserAddDtoyu usera map ettik. ve artık elimizde bir user mevcut.
                 var result = await _userManager.CreateAsync(user, userAddDto.Password);     //UserManager içerisindeki CreateAsync metoduyla kullanıcı ve kullanıcı şifresini paramtere olarak yazıyoruz. Kullanıcı eklenmiş oluyor .  resulta atıyoruz. (IdentityResult)
                 if (result.Succeeded)                                                    //Kullanıcı başarıyla eklendi mi eklenmedi 
@@ -228,7 +230,8 @@ namespace BlogProjem.Mvc.Areas.Admin.Controllers
                 var oldUserPicture = oldUser.Picture;   //Resim değişim işlemi gerçekleşmişse . Eski resimi sileceğiz.
                 if (userUpdateDto.PictureFile != null)
                 {
-                    userUpdateDto.Picture = await  ImageUpload(userUpdateDto.UserName, userUpdateDto.PictureFile);
+                    var uploadedImageDtoResult = await _imageHelper.UploadUserImage(userUpdateDto.UserName, userUpdateDto.PictureFile);     //Bizlrin UserAddDto daki picture alanına Resim adı eklemesi gerekiyor. Bu resim adını eklersek kullanıcının resmini görüyor olacağız
+                    userUpdateDto.Picture = uploadedImageDtoResult.ResultStatus == ResultStatus.Success ? uploadedImageDtoResult.Data.FullName : "userImages/defaultUser.png";
                     //ImageDeleted(oldUserPicture);
                     isNewPictureUploaded = true;
                 }
@@ -300,7 +303,8 @@ namespace BlogProjem.Mvc.Areas.Admin.Controllers
                 var oldUserPicture = oldUser.Picture;   //Resim değişim işlemi gerçekleşmişse . Eski resimi sileceğiz.
                 if (userUpdateDto.PictureFile != null)
                 {
-                    userUpdateDto.Picture = await ImageUpload(userUpdateDto.UserName, userUpdateDto.PictureFile);
+                    var uploadedImageDtoResult = await _imageHelper.UploadUserImage(userUpdateDto.UserName, userUpdateDto.PictureFile);     //Bizlrin UserAddDto daki picture alanına Resim adı eklemesi gerekiyor. Bu resim adını eklersek kullanıcının resmini görüyor olacağız
+                    userUpdateDto.Picture = uploadedImageDtoResult.ResultStatus == ResultStatus.Success ? uploadedImageDtoResult.Data.FullName : "userImages/defaultUser.png";
                     if (oldUserPicture != "default.png")
                     {
                         isNewPictureUploaded = true;
@@ -359,6 +363,14 @@ namespace BlogProjem.Mvc.Areas.Admin.Controllers
                         TempData.Add("SuccessMessage", "Şifreniz başarıyla değiştirilmiştir.");
                         return View();
                     }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
+                        return View(userPasswordChangeDto);
+                    }
 
                 }
                 else
@@ -372,47 +384,29 @@ namespace BlogProjem.Mvc.Areas.Admin.Controllers
                 return View(userPasswordChangeDto);
             }
 
-            return View();
         }
 
-        [Authorize(Roles = "Admin,Editor")]
-        public async Task<string> ImageUpload(string userName , IFormFile pictureFile)        //Bu dersimizde upload işlemini tamamlamış oluyo
-        {
-            // ~/img/user.Picture
-            string wwwroot = _env.WebRootPath;      //Bu işlem bizlere wwwrootun string olarak dosya yolunu vericektir.
-            // alpertunga     
-            // string fileName2 = Path.GetFileNameWithoutExtension(pictureFile.FileName);
-            //.png
-            string fileExtension = Path.GetExtension(pictureFile.FileName);      //uzntısını almış olduk.
-            DateTime dateTime = DateTime.Now;
-            // AlperTunga_587_5_38_12_3_10_2020.png
-            string fileName = $"{userName}_{dateTime.FullDateAndTimeStringWithUnderscore()}{fileExtension}"; //Burada resmin ismini almış olduk. Ve methodla diğer değerleri doldurduk. Extensionu da sona koyarak gerekli dosya adını oluşturduk. Elimizde dosya adı var ama dosya yolunu nereye kaydedicez.
-            var path = Path.Combine($"{wwwroot}/img", fileName); //Dosya yolunu oluşturmuş oluyoruz ve dosyasının adı da bulunuyor..
-            await using (var stream = new FileStream(path, FileMode.Create))    //FileStream : Dosyalarla ilgili işlemlerimizi yöneten sınıftır. Nereye kaydedilmeli , hangi modda olacak ? 
-            {
-                await pictureFile.CopyToAsync(stream); //UserAddDto içerisindeki resmi streame göre kopyaladık.
-            }
-
-            return fileName; // AlperTunga_587_5_38_12_3_10_2020.png - "~/img/user.Picture"
-        }
+       
 
 
         [Authorize(Roles = "Admin,Editor")]
         public bool ImageDeleted(string pictureName)
         {
-            //Bir tane dosya yolu oluşturacağız . Ve bu dosya yolu içerisindeki resmi de sileceğiz. 
-            string wwwroot = _env.WebRootPath;  //Elimizde hem dosya yolunun adı hemde www root klasörünün dosya yolu olduguna göre bunların ikisini kombin ederek buradaki resmin dosya yolunu oluşturalım.
-            var fileToDelete = Path.Combine($"{wwwroot}/img", pictureName); //Bizlerin bu dosya yolu fileToDelete içerisinde saklanıyor olacak.
-            if (System.IO.File.Exists(fileToDelete))    //Eğer böyle bir path var ise bu path içerisindeki değerleri silelim.
-            {
-                System.IO.File.Delete(fileToDelete);    //Lütfen fileToDelete in içerisindeki dosya yoluna gidip buradaki dosyayı siler misin
-                return true;                            //İşlem evet
-            }
-            else
-            {
-                return false;
+            ////Bir tane dosya yolu oluşturacağız . Ve bu dosya yolu içerisindeki resmi de sileceğiz. 
+            //string wwwroot = _env.WebRootPath;  //Elimizde hem dosya yolunun adı hemde www root klasörünün dosya yolu olduguna göre bunların ikisini kombin ederek buradaki resmin dosya yolunu oluşturalım.
+            //var fileToDelete = Path.Combine($"{wwwroot}/img", pictureName); //Bizlerin bu dosya yolu fileToDelete içerisinde saklanıyor olacak.
+            //if (System.IO.File.Exists(fileToDelete))    //Eğer böyle bir path var ise bu path içerisindeki değerleri silelim.
+            //{
+            //    System.IO.File.Delete(fileToDelete);    //Lütfen fileToDelete in içerisindeki dosya yoluna gidip buradaki dosyayı siler misin
+            //    return true;                            //İşlem evet
+            //}
+            //else
+            //{
+            //    return false;
 
-            }
+            //}
+
+            return true;
         }
 
         [HttpGet]

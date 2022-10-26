@@ -37,6 +37,6 @@ namespace BlogProjem.Services.Extensions
             serviceCollection.AddScoped<ICategoryService, CategoryManager>();
             serviceCollection.AddScoped<IArticleService, ArticleManager>();
             return serviceCollection;
-        }
+        } 
     }
 }
