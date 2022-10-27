@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BlogProjem.Entities.Dtos
 {
     //Yüklenmiş olan resimlerle ilgili bizlere detaylı bilgi sağlıyor olacak.
-    public class UploadedImageDto
+    public class ImageUploadedDto
     {
         public string FullName { get; set; }
         public string oldName { get; set; }

@@ -30,7 +30,7 @@ namespace BlogProjem.Mvc.Helpers.Concrete
 
         public IDataResult<ImageDeletedDto> Delete(string pictureName)
         {
-            //Bir tane dosya yolu oluşturacağız . Ve bu dosya yolu içerisindeki resmi de sileceğiz. 
+            //Bir tane dosya yolu oluşturacağız . Ve bu dosya yolu içerisinde ki resmi de sileceğiz. 
             var fileToDelete = Path.Combine($"{_wwwroot}/{imgFolder}/", pictureName); //Bizlerin bu dosya yolu fileToDelete içerisinde saklanıyor olacak. Bu klasöre eriştik
 
             if (System.IO.File.Exists(fileToDelete))    //Eğer böyle bir path var ise bu path içerisindeki değerleri silelim. Böyle bir dosya var mı?
@@ -55,7 +55,7 @@ namespace BlogProjem.Mvc.Helpers.Concrete
             }
 
         }
-        public async Task<IDataResult<UploadedImageDto>> UploadUserImage(string userName, IFormFile pictureFile, string folderName="userImages")
+        public async Task<IDataResult<ImageUploadedDto>> UploadUserImage(string userName, IFormFile pictureFile, string folderName="userImages")
         {
             //Böyle bir klasör var mı demek
             if (!Directory.Exists($"{_wwwroot}/{imgFolder}/{folderName}"))  // Eğer böyle bir klasör yoksa gerekli klasörün if içeirisnde oluşturmamız gerekiyor.
@@ -73,7 +73,7 @@ namespace BlogProjem.Mvc.Helpers.Concrete
                 await pictureFile.CopyToAsync(stream); //UserAddDto içerisindeki resmi streame göre kopyaladık.
             }
 
-            return new DataResult<UploadedImageDto>(ResultStatus.Success, $"{userName} adllı kullanıcının resmi başarıyla yüklenmiştir.", new UploadedImageDto { 
+            return new DataResult<ImageUploadedDto>(ResultStatus.Success, $"{userName} adllı kullanıcının resmi başarıyla yüklenmiştir.", new ImageUploadedDto { 
                     FullName = $"{folderName}/{newFileName}",
                     oldName = oldFileName,
                     Extension = fileExtension,

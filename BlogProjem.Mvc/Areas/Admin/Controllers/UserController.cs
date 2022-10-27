@@ -233,7 +233,11 @@ namespace BlogProjem.Mvc.Areas.Admin.Controllers
                     var uploadedImageDtoResult = await _imageHelper.UploadUserImage(userUpdateDto.UserName, userUpdateDto.PictureFile);     //Bizlrin UserAddDto daki picture alanına Resim adı eklemesi gerekiyor. Bu resim adını eklersek kullanıcının resmini görüyor olacağız
                     userUpdateDto.Picture = uploadedImageDtoResult.ResultStatus == ResultStatus.Success ? uploadedImageDtoResult.Data.FullName : "userImages/defaultUser.png";
                     //ImageDeleted(oldUserPicture);
-                    isNewPictureUploaded = true;
+                    if (oldUserPicture != "userImages/defaultUser.png")
+                    {
+                        isNewPictureUploaded = true;
+                    }
+
                 }
                 var updatedUser = _mapper.Map<UserUpdateDto, User>(userUpdateDto, oldUser);
                 var result = await _userManager.UpdateAsync(updatedUser);
@@ -241,7 +245,7 @@ namespace BlogProjem.Mvc.Areas.Admin.Controllers
                 {
                     if (isNewPictureUploaded)   //Güncelleme için Yeni bir resim eklendi mi ? Evet ise 
                     {
-                        ImageDeleted(oldUserPicture);   //Eski resmi sistemimizden sildik. 
+                        _imageHelper.Delete(oldUserPicture);   //Eski resmi sistemimizden sildik. 
                     }
                     var userUpdateViewModel = JsonSerializer.Serialize(new UserUpdateAjaxViewModel
                     {
@@ -305,7 +309,7 @@ namespace BlogProjem.Mvc.Areas.Admin.Controllers
                 {
                     var uploadedImageDtoResult = await _imageHelper.UploadUserImage(userUpdateDto.UserName, userUpdateDto.PictureFile);     //Bizlrin UserAddDto daki picture alanına Resim adı eklemesi gerekiyor. Bu resim adını eklersek kullanıcının resmini görüyor olacağız
                     userUpdateDto.Picture = uploadedImageDtoResult.ResultStatus == ResultStatus.Success ? uploadedImageDtoResult.Data.FullName : "userImages/defaultUser.png";
-                    if (oldUserPicture != "default.png")
+                    if (oldUserPicture != "userImages/defaultUser.png")
                     {
                         isNewPictureUploaded = true;
                     }
@@ -317,7 +321,7 @@ namespace BlogProjem.Mvc.Areas.Admin.Controllers
                 {
                     if (isNewPictureUploaded)   //Güncelleme için Yeni bir resim eklendi mi ? Evet ise 
                     {
-                        ImageDeleted(oldUserPicture);   //Eski resmi sistemimizden sildik. 
+                        _imageHelper.Delete(oldUserPicture);   //Eski resmi sistemimizden sildik. 
                     }
                     TempData.Add("SuccessMessage", $"{updatedUser.UserName} adlı kullanıcı başarıyla güncellenmiştir.");
                     return View(userUpdateDto);
@@ -386,28 +390,6 @@ namespace BlogProjem.Mvc.Areas.Admin.Controllers
 
         }
 
-       
-
-
-        [Authorize(Roles = "Admin,Editor")]
-        public bool ImageDeleted(string pictureName)
-        {
-            ////Bir tane dosya yolu oluşturacağız . Ve bu dosya yolu içerisindeki resmi de sileceğiz. 
-            //string wwwroot = _env.WebRootPath;  //Elimizde hem dosya yolunun adı hemde www root klasörünün dosya yolu olduguna göre bunların ikisini kombin ederek buradaki resmin dosya yolunu oluşturalım.
-            //var fileToDelete = Path.Combine($"{wwwroot}/img", pictureName); //Bizlerin bu dosya yolu fileToDelete içerisinde saklanıyor olacak.
-            //if (System.IO.File.Exists(fileToDelete))    //Eğer böyle bir path var ise bu path içerisindeki değerleri silelim.
-            //{
-            //    System.IO.File.Delete(fileToDelete);    //Lütfen fileToDelete in içerisindeki dosya yoluna gidip buradaki dosyayı siler misin
-            //    return true;                            //İşlem evet
-            //}
-            //else
-            //{
-            //    return false;
-
-            //}
-
-            return true;
-        }
 
         [HttpGet]
         public ViewResult AccessDenied()
