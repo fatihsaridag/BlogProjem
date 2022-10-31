@@ -419,3 +419,6 @@ C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Mvc\obj\Debug\net5.0\Razor\Are
 C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Mvc\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\Components\UserMenu\Default.cshtml.g.cs
 C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Mvc\obj\Debug\net5.0\Razor\Areas\Admin\Views\User\ChangeDetails.cshtml.g.cs
 C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Mvc\obj\Debug\net5.0\Razor\Areas\Admin\Views\User\PasswordChange.cshtml.g.cs
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Mvc\bin\Debug\net5.0\Humanizer.dll
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Mvc\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Mvc\obj\Debug\net5.0\Razor\Views\Shared\_ComingSoonLayout.cshtml.g.cs

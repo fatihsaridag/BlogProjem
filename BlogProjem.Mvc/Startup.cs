@@ -23,6 +23,14 @@ namespace BlogProjem.Mvc
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }    //Appsettings jsonu okumak istiyoruz.
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -34,7 +42,7 @@ namespace BlogProjem.Mvc
             });
             services.AddSession();
             services.AddAutoMapper(typeof(CategoryProfile), typeof(ArticleProfile),typeof(UserProfile));    //Automapperi kayýt ediyoruz.
-            services.LoadMyServices();
+            services.LoadMyServices(connectionString:Configuration.GetConnectionString("LocalDB"));
             services.AddScoped<IImageHelper, ImageHelper>();
             services.ConfigureApplicationCookie(options =>
             {
