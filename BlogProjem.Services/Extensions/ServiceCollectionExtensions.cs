@@ -4,6 +4,7 @@ using BlogProjem.Data.Concrete.EntityFramework.Contexts;
 using BlogProjem.Entities.Concrete;
 using BlogProjem.Services.Abstract;
 using BlogProjem.Services.Concrete;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,9 @@ namespace BlogProjem.Services.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection LoadMyServices(this IServiceCollection serviceCollection)
+        public static IServiceCollection LoadMyServices(this IServiceCollection serviceCollection , string connectionString)
         {
-            serviceCollection.AddDbContext<BlogProjemContext>();
+            serviceCollection.AddDbContext<BlogProjemContext>(options => options.UseSqlServer(connectionString));
             serviceCollection.AddIdentity<User, Role>(options => 
             {
                 //Bizler kullanıcı eklemek istediğimizde bu kullanıcıyla ilgili arka planda ayarlar bulunuyor. Mesela aynı kullanıcıya yönelik email uniq olmalı mı olmamalı mı

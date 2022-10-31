@@ -181,5 +181,31 @@ namespace BlogProjem.Services.Concrete
                 return new DataResult<CategoryUpdateDto>(ResultStatus.Error, Messages.Category.NotFound(isPlural: false), null);
             }
         }
+
+        public async Task<IDataResult<int>> Count()
+        {
+            var categoriesCount = await _unitOfWork.Categories.CountAsync();
+            if (categoriesCount > -1)
+            {
+                return new DataResult<int>(ResultStatus.Success, categoriesCount);
+            }
+            else
+            {
+                return new DataResult<int>(ResultStatus.Error, $"Beklenmeyen bir hata ile karşılaşıldı", -1);
+            }
+        }
+
+        public async Task<IDataResult<int>> CountByIsDeleted()
+        {
+            var categoriesCount = await _unitOfWork.Categories.CountAsync(x => !x.IsDeleted);
+            if (categoriesCount > -1)
+            {
+                return new DataResult<int>(ResultStatus.Success, categoriesCount);
+            }
+            else
+            {
+                return new DataResult<int>(ResultStatus.Error, $"Beklenmeyen bir hata ile karşılaşıldı", -1);
+            }
+        }
     }
 }

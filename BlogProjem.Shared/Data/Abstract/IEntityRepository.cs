@@ -16,8 +16,7 @@ namespace BlogProjem.Shared.Data.Abstract
         Task DeleteAsync(T entity);
         Task<T> AddAsync(T entity);
         Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
-        Task<int> CountAsync(Expression<Func<T, bool>> predicate); //Mesela admin panelinde elimizdeki verileri listelemek isteyebilirz kaç tane makale var vs
-
+        Task<int> CountAsync(Expression<Func<T, bool>> predicate=null); //Mesela admin panelinde elimizdeki verileri listelemek isteyebilirz kaç tane makale var vs
 
 
     }
