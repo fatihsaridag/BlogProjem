@@ -61,8 +61,6 @@ namespace BlogProjem.Mvc.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-
-    
                 //Öncelikle kontrol etmemiz gereken ilk parametre ModelState durumu . Çünkü kullanıcı yanlış girmiş olabilir.
                 var user = await _userManager.FindByEmailAsync(userLoginDto.Email); //Kullanıcının emailiyle kullanıcıyı almış olduk.
                 if (user!=null) //Eğer kullanıcı null değilse böyle bir kullanıcı var demektir.

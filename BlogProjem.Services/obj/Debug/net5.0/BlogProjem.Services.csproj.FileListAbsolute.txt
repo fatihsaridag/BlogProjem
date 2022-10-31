@@ -17,3 +17,4 @@ C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Services\bin\Debug\net5.0\Blog
 C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Services\bin\Debug\net5.0\BlogProjem.Entities.pdb
 C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Services\bin\Debug\net5.0\BlogProjem.Shared.pdb
 C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Services\obj\Debug\net5.0\BlogProjem.Services.csproj.CopyComplete
+C:\Users\fsari\source\repos\BlogProjem\BlogProjem.Services\bin\Debug\net5.0\BlogProjem.Services.xml
