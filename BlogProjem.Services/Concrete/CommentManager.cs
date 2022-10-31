@@ -16,7 +16,13 @@ namespace BlogProjem.Services.Concrete
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public async Task<IDataResult<int>> Count()
+        public CommentManager(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
+
+        public async Task<IDataResult<int>> CountAsync()
         {
             var commentsCount = await _unitOfWork.Comments.CountAsync();
             if (commentsCount > -1)
@@ -29,7 +35,7 @@ namespace BlogProjem.Services.Concrete
             }
         }
 
-        public async Task<IDataResult<int>> CountByIsDeleted()
+        public async Task<IDataResult<int>> CountByNonDeletedAsync()
         {
             var commentsCount = await _unitOfWork.Comments.CountAsync(c => !c.IsDeleted);
             if (commentsCount > -1)
